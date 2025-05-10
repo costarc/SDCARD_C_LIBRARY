@@ -1,4 +1,5 @@
-SDCARD_C_LIBRARY
+#SDCARD_C_LIBRARY
+
 This library integrates FatFS with low-level I/O functions to access SD card files and directories using either hardware SPI or bit-banged SPI.
 
 The following folders contain tested and working code:
