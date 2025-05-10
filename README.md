@@ -1,13 +1,27 @@
 # SDCARD_C_LIBRARY
+This library brings together FatFS and low-level I/O functions to access SD card files and directories using either hardware SPI or bit-banged signals.
 
-This library integrates **FatFS** with low-level I/O functions to access SD card files and directories using either **hardware SPI** or **bit-banged SPI**.
+Folders and Implementations
+device_sd_spi
+Implements SD card access using the Raspberry Pi's native SPI on GPIOs 8, 9, 10, and 11.
+Requires SPI to be enabled. To enable SPI, run:
 
-## Available Implementations
-
-### `device_sd_spi`
-Implements SD card access using the Raspberry Pi's native SPI on GPIOs **8, 9, 10, and 11**.  
-Requires SPI to be enabled:
-
-```bash
 sudo raspi-config
-# Navigate to Interface Options → SPI → Enable
+Then go to:
+Interface Options → SPI → Enable, and reboot the Raspberry Pi if prompted.
+
+## device_sd_bitbang
+Implements SD card access by bit-banging GPIOs 8, 9, 10, and 11.
+Requires hardware SPI to be disabled. To disable SPI, run:
+
+sudo raspi-config
+Then go to:
+Interface Options → SPI → Disable, and reboot the Raspberry Pi.
+
+This implementation is intended to be portable to other devices that do not have native SPI hardware support.
+
+## sdcc_sd_bitbang
+An untested version of SD card access via bit-banging on a Z80 system.
+The code compiles, but has not been tested. Some low-level C functions (fgets, scanf, etc.) were reimplemented for compatibility, but they have not been verified and likely contain bugs.
+
+⚠️ This version is experimental. Use at your own risk.
